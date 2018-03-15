@@ -25,7 +25,11 @@ class Pop extends Task {
   }
 
   fetchObjectAndId() {
-    return fetch(this.url).then(res => res.headers.get("X-Datacenter"));
+    return fetch(this.url, {
+      headers: {
+        Connection: "close"
+      }
+    }).then(res => res.headers.get("X-Datacenter"));
   }
 
   prefixKeys(obj, prefix) {
